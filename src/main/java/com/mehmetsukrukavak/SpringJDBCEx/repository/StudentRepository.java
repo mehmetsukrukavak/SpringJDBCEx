@@ -2,14 +2,9 @@ package com.mehmetsukrukavak.SpringJDBCEx.repository;
 
 import com.mehmetsukrukavak.SpringJDBCEx.model.Student;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
-import org.springframework.jdbc.core.RowMapper;
 import org.springframework.stereotype.Repository;
 
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.util.ArrayList;
 import java.util.List;
 
 @Repository
@@ -28,18 +23,18 @@ public class StudentRepository {
     }
 
     public void save(Student student) {
-        String sql = "INSERT INTO student (rollNo, name, marks) VALUES (?, ?, ?)";
+        String sql = "INSERT INTO student (id, name, marks) VALUES (?, ?, ?)";
 
-       int rows = jdbcTemplate.update(sql, student.getRollNo(), student.getName(), student.getMarks());
+       int rows = jdbcTemplate.update(sql, student.getId(), student.getName(), student.getMarks());
         System.out.println(rows + " rows inserted");
     }
 
     public List<Student> findAll() {
-        String sql = "SELECT * FROM student";
+        String sql = "select * from student";
 
         return jdbcTemplate.query(sql,  (rs,  rowNum) -> {
             Student student = new Student();
-            student.setRollNo(rs.getInt("rollNo"));
+            student.setId(rs.getInt("id"));
             student.setName(rs.getString("name"));
             student.setMarks(rs.getInt("marks"));
             return student;

@@ -6,16 +6,16 @@ import org.springframework.stereotype.Component;
 @Component
 @Scope("prototype")
 public class Student {
-    private int rollNo;
+    private int id;
     private String name;
     private int marks;
 
-    public int getRollNo() {
-        return rollNo;
+    public int getId() {
+        return id;
     }
 
-    public void setRollNo(int rollNo) {
-        this.rollNo = rollNo;
+    public void setId(int id) {
+        this.id = id;
     }
 
     public String getName() {
@@ -37,7 +37,7 @@ public class Student {
     @Override
     public String toString() {
         return "Student{" +
-                "rollNo=" + rollNo +
+                "id=" + id +
                 ", name='" + name + '\'' +
                 ", marks=" + marks +
                 '}';
